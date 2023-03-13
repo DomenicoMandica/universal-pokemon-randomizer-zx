@@ -7550,4 +7550,25 @@ public abstract class AbstractRomHandler implements RomHandler {
     public void setPickupItems(List<PickupItem> pickupItems) {
         // do nothing
     }
+
+    @Override
+    public void OnlyRemoveBannedMoves()
+    {
+
+
+        Map<Integer, List<MoveLearnt>> moves = this.getMovesLearnt();
+
+        for (Integer pkmnNum : moves.keySet())
+        {
+            Pokemon poke = findPokemonInPoolWithSpeciesID(mainPokemonListInclFormes, pkmnNum);
+            if(poke == null)
+            {
+                System.out.println("Null mon");
+                continue;
+            }
+
+
+        }
+
+    }
 }

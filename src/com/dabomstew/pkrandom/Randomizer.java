@@ -301,18 +301,26 @@ public class Randomizer {
         if(settings.getMovesetsMod() == Settings.MovesetsMod.UNCHANGED && settings.isBlockBrokenMovesetMoves())
         {
 
-            List<Move> validMoves = new ArrayList<>();
-            List<Move> validDamagingMoves = new ArrayList<>();
-            Map<Type, List<Move>> validTypeMoves = new HashMap<>();
-            Map<Type, List<Move>> validTypeDamagingMoves = new HashMap<>();
 
-            romHandler.SetupMoves(true, validMoves, validDamagingMoves, validTypeMoves, validTypeDamagingMoves);
 
+            romHandler.OnlyRemoveBannedMoves();
+            movesetsChanged = true;
         }
         else if (settings.getMovesetsMod() != Settings.MovesetsMod.UNCHANGED &&
                 settings.getMovesetsMod() != Settings.MovesetsMod.METRONOME_ONLY) {
             romHandler.randomizeMovesLearnt(settings);
             romHandler.randomizeEggMoves(settings);
+
+
+            // loop thru and remove banned moves
+
+
+
+
+
+
+
+
             movesetsChanged = true;
         }
 
