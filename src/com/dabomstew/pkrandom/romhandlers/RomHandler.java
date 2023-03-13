@@ -665,9 +665,4 @@ public interface RomHandler {
 
     public void SetupMoves(boolean noBroken, List<Move> validMoves, List<Move> validDamagingMoves,
                            Map<Type, List<Move>> validTypeMoves, Map<Type, List<Move>> validTypeDamagingMoves);
-
-
-    public void OnlyRemoveBannedMoves();
-
 }
-
