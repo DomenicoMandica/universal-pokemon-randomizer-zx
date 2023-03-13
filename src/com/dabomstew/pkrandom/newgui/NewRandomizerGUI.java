@@ -2274,7 +2274,7 @@ public class NewRandomizerGUI {
         pmsReorderDamagingMovesCheckBox.setEnabled(false);
         pmsReorderDamagingMovesCheckBox.setSelected(false);
         pmsNoGameBreakingMovesCheckBox.setVisible(true);
-        pmsNoGameBreakingMovesCheckBox.setEnabled(true);
+        pmsNoGameBreakingMovesCheckBox.setEnabled(false);
         pmsNoGameBreakingMovesCheckBox.setSelected(false);
         pmsForceGoodDamagingCheckBox.setVisible(true);
         pmsForceGoodDamagingCheckBox.setEnabled(false);
