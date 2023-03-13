@@ -3383,6 +3383,8 @@ public abstract class AbstractRomHandler implements RomHandler {
         return moveUpdates;
     }
 
+
+
     @Override
     public void randomizeMovesLearnt(Settings settings) {
         boolean typeThemed = settings.getMovesetsMod() == Settings.MovesetsMod.RANDOM_PREFER_SAME_TYPE;
@@ -3686,15 +3688,19 @@ public abstract class AbstractRomHandler implements RomHandler {
         this.setEggMoves(movesets);
     }
 
+    // Use this to initial all moves. Public wrapper for createSetsOfMoves
+    public void SetupMoves(boolean noBroken, List<Move> validMoves, List<Move> validDamagingMoves,
+                           Map<Type, List<Move>> validTypeMoves, Map<Type, List<Move>> validTypeDamagingMoves)
+    {
+            createSetsOfMoves(noBroken, validMoves, validDamagingMoves, validTypeMoves, validTypeDamagingMoves);
+    }
+
+
     private void createSetsOfMoves(boolean noBroken, List<Move> validMoves, List<Move> validDamagingMoves,
                                    Map<Type, List<Move>> validTypeMoves, Map<Type, List<Move>> validTypeDamagingMoves) {
         List<Move> allMoves = this.getMoves();
-        List<Integer> hms = this.getHMMoves();
-        Set<Integer> allBanned = new HashSet<Integer>(noBroken ? this.getGameBreakingMoves() : Collections.EMPTY_SET);
-        allBanned.addAll(hms);
-        allBanned.addAll(this.getMovesBannedFromLevelup());
-        allBanned.addAll(GlobalConstants.zMoves);
-        allBanned.addAll(this.getIllegalMoves());
+        Set<Integer> allBanned = GetAllBannedMoves(noBroken);
+
 
         for (Move mv : allMoves) {
             if (mv != null && !GlobalConstants.bannedRandomMoves[mv.number] && !allBanned.contains(mv.number)) {
@@ -4581,8 +4587,20 @@ public abstract class AbstractRomHandler implements RomHandler {
         }
     }
 
+    @Override
+    public Set<Integer> GetAllBannedMoves(boolean noBroken)
+    {
+        Set<Integer> allBanned = new HashSet<Integer>(noBroken ? this.getGameBreakingMoves() : Collections.EMPTY_SET);
+        allBanned.addAll(this.getHMMoves());
+        allBanned.addAll(this.getMovesBannedFromLevelup());
+        allBanned.addAll(GlobalConstants.zMoves);
+        allBanned.addAll(this.getIllegalMoves());
+
+        return allBanned;
+    }
+
     private double getMoveCompatibilityProbability(Pokemon pkmn, Move mv, boolean requiredEarlyOn,
-                                                  boolean preferSameType) {
+                                                   boolean preferSameType) {
             double probability = 0.5;
             if (preferSameType) {
                 if (pkmn.primaryType.equals(mv.type)

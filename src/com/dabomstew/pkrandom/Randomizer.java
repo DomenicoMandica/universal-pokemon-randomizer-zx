@@ -29,6 +29,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
+import com.dabomstew.pkrandom.constants.Moves;
 import com.dabomstew.pkrandom.pokemon.*;
 import com.dabomstew.pkrandom.romhandlers.Gen1RomHandler;
 import com.dabomstew.pkrandom.romhandlers.RomHandler;
@@ -295,7 +296,20 @@ public class Randomizer {
         // 2. Reorder moves by damage
         // Note: "Metronome only" is handled after trainers instead
 
-        if (settings.getMovesetsMod() != Settings.MovesetsMod.UNCHANGED &&
+
+        // If we did decided to not randomize moves but we want to remove broken moves
+        if(settings.getMovesetsMod() == Settings.MovesetsMod.UNCHANGED && settings.isBlockBrokenMovesetMoves())
+        {
+
+            List<Move> validMoves = new ArrayList<>();
+            List<Move> validDamagingMoves = new ArrayList<>();
+            Map<Type, List<Move>> validTypeMoves = new HashMap<>();
+            Map<Type, List<Move>> validTypeDamagingMoves = new HashMap<>();
+
+            romHandler.SetupMoves(true, validMoves, validDamagingMoves, validTypeMoves, validTypeDamagingMoves);
+
+        }
+        else if (settings.getMovesetsMod() != Settings.MovesetsMod.UNCHANGED &&
                 settings.getMovesetsMod() != Settings.MovesetsMod.METRONOME_ONLY) {
             romHandler.randomizeMovesLearnt(settings);
             romHandler.randomizeEggMoves(settings);

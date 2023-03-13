@@ -27,13 +27,11 @@ package com.dabomstew.pkrandom.romhandlers;
 
 import java.awt.image.BufferedImage;
 import java.io.PrintStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import com.dabomstew.pkrandom.MiscTweak;
 import com.dabomstew.pkrandom.Settings;
+import com.dabomstew.pkrandom.constants.GlobalConstants;
 import com.dabomstew.pkrandom.pokemon.*;
 
 public interface RomHandler {
@@ -487,6 +485,8 @@ public interface RomHandler {
 
     ItemList getNonBadItems();
 
+
+
     List<Integer> getEvolutionItems();
 
     List<Integer> getXItems();
@@ -658,4 +658,11 @@ public interface RomHandler {
     List<Pokemon> getBannedFormesForPlayerPokemon();
 
     List<Pokemon> getBannedFormesForTrainerPokemon();
+
+
+    // Seperate logic from randomizeMovesLearnt
+    public Set<Integer> GetAllBannedMoves(boolean noBroken);
+
+    public void SetupMoves(boolean noBroken, List<Move> validMoves, List<Move> validDamagingMoves,
+                           Map<Type, List<Move>> validTypeMoves, Map<Type, List<Move>> validTypeDamagingMoves);
 }
