@@ -2843,13 +2843,13 @@ public class NewRandomizerGUI {
 
             tpAdditionalPokemonForLabel.setVisible(additionalPokemonAvailable);
             tpBossTrainersCheckBox.setVisible(additionalPokemonAvailable);
-            tpBossTrainersCheckBox.setEnabled(false);
+            tpBossTrainersCheckBox.setEnabled(true);
             tpBossTrainersSpinner.setVisible(additionalPokemonAvailable);
             tpImportantTrainersCheckBox.setVisible(additionalPokemonAvailable);
-            tpImportantTrainersCheckBox.setEnabled(false);
+            tpImportantTrainersCheckBox.setEnabled(true);
             tpImportantTrainersSpinner.setVisible(additionalPokemonAvailable);
             tpRegularTrainersCheckBox.setVisible(additionalPokemonAvailable);
-            tpRegularTrainersCheckBox.setEnabled(false);
+            tpRegularTrainersCheckBox.setEnabled(true);
             tpRegularTrainersSpinner.setVisible(additionalPokemonAvailable);
 
             boolean trainersHeldItemSupport = pokemonGeneration >= 3;
@@ -3336,12 +3336,6 @@ public class NewRandomizerGUI {
             tpRandomShinyTrainerPokemonCheckBox.setSelected(false);
             tpDoubleBattleModeCheckBox.setEnabled(false);
             tpDoubleBattleModeCheckBox.setSelected(false);
-            tpBossTrainersCheckBox.setEnabled(false);
-            tpBossTrainersCheckBox.setSelected(false);
-            tpImportantTrainersCheckBox.setEnabled(false);
-            tpImportantTrainersCheckBox.setSelected(false);
-            tpRegularTrainersCheckBox.setEnabled(false);
-            tpRegularTrainersCheckBox.setSelected(false);
             tpBossTrainersItemsCheckBox.setEnabled(false);
             tpBossTrainersItemsCheckBox.setSelected(false);
             tpImportantTrainersItemsCheckBox.setEnabled(false);
